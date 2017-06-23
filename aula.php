@@ -57,28 +57,38 @@ $db  = mysqli_select_db($conn,"2346231_db");
         </style>
 </head>
 <body>
-      <nav class="top-nav teal">
-        <div class="container">
-          <div class="nav-wrapper"><a class="page-title">ElPuig Glaze</a></div>
-        </div>
-      </nav>
+           <nav class="top-nav teal">
+            <div class="nav-wrapper">
+            <div class="container"><a href="#" class="brand-logo">El Puig Glaza</a>
+              <form action="search.php">
+                <div class="input-field right hide-on-med-and-down">
+                  <input name="search" type="search" value="search by MAC" required>
+                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+            </div>
+          </nav> 
+          
+             
+        
         <div class="row">
     <div class="col s12 teal white-text">
     <div class="indicator white" style="z-index:1">
       <ul class="tabs teal">
         <li class="tab col s3 white-text"><a href="#test1">Stallman</a></li>
         <li class="tab col s3 white-text"><a class="active" href="#test2">Ada</a></li>
-        <li class="tab col s3 white-text"><a href="#test3">Torvalds</a></li>
+        <li class="tab col s3 white-text"><a href="#test3">Departaments</a></li>
         <li class="tab col s3 white-text"><a href="#test4">Turing</a></li>
       </ul>
       </div>
     </div>
     <div id="test1" class="col s12"><?php $id="stallman"; include 'aula2.php';?></div>
     <div id="test2" class="col s12"><?php $id="ada"; include 'aula2.php';?></div>
-    <div id="test3" class="col s12"><?php $id="torvalds"; include 'aula2.php';?></div>
+    <div id="test3" class="col s12"><?php $id="departaments"; include 'aula2.php';?></div>
     <div id="test4" class="col s12"><?php $id="turing"; include 'aula2.php';?></div>
   </div>
-
 
 
 </body>

@@ -47,7 +47,7 @@ $files = glob('jsons/*.{json}', GLOB_BRACE);
                             $weekday=$data->ansible_date_time->weekday;
                             
                             $sql = "INSERT INTO JSON (nodename, architecture, subnet, address, ip6address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time, hour, weekday)
-                            VALUES ('$nodename', '$architecture', '$subnet', '$address', '$macaddress', '$ip6address', '$bios_version', '$sda_model', '$sda_size', '$sr0_model', '$sr0_size', '$processor_cores', '$processor', '$distro', '$distro_release', '$distro_version', '$date', '$time', '$hour', '$weekday')";
+                            VALUES ('$nodename', '$architecture', '$subnet', '$address', '$ip6address', '$macaddress', '$bios_version', '$sda_model', '$sda_size', '$sr0_model', '$sr0_size', '$processor_cores', '$processor', '$distro', '$distro_release', '$distro_version', '$date', '$time', '$hour', '$weekday')";
                             if (mysqli_query($conn, $sql)) {
                                     echo "New record created successfully";
                                 } else {

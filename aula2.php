@@ -11,6 +11,9 @@ switch($id)
         case "turing":
                 $subnet="192.168.13.0";
                 break;
+        case "departaments":
+                $subnet="192.168.17.0";
+                break;
 }
 
 
@@ -32,25 +35,25 @@ echo'<h3 class="center-align">SUMMARY</h2>';
                             echo "</tr>";      
                             
                             
-$sql = "select distinct processor, count(processor) as CountOf from JSON WHERE subnet='$subnet' group by processor";
+$sql = "select distinct processor, count(processor) as CountOf from (SELECT MAX(num) as num, processor, nodename, subnet FROM JSON group by nodename) as llistan WHERE subnet='$subnet' group by processor";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>Processor</td> <td>" . $row["processor"]. "</td> <td>" . $row["CountOf"]. "</td>";
     }
 
-$sql = "select distinct sda_model, count(sda_model) as CountOf from JSON WHERE subnet='$subnet' group by sda_model";
+$sql = "select distinct sda_model, count(sda_model) as CountOf from (SELECT MAX(num) as num, sda_model, nodename, subnet FROM JSON group by nodename) as llistan WHERE subnet='$subnet' group by sda_model";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>Disk</td> <td> " . $row["sda_model"]. " </td> <td> " . $row["CountOf"]. " </td>";
     }
     
-$sql = "select distinct sr0_model, count(sr0_model) as CountOf from JSON WHERE subnet='$subnet' group by sr0_model";
+$sql = "select distinct sr0_model, count(sr0_model) as CountOf from (SELECT MAX(num) as num, sr0_model, nodename, subnet FROM JSON group by nodename) as llistan WHERE subnet='$subnet' group by sr0_model";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>RAM</td> <td> " . $row["sr0_model"]. " </td> <td> " . $row["CountOf"]. " </td>";
     }    
 echo"</table></div><hr>";
-$sql = "SELECT num, nodename, address, architecture, ip6address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time, subnet FROM JSON WHERE subnet='$subnet';";
+$sql = "SELECT MAX(num) as num, nodename, address, architecture, ip6address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time, subnet FROM JSON WHERE subnet='$subnet' GROUP BY nodename;";
 $result = mysqli_query($conn, $sql);
 echo $last["nodename"];
 if (mysqli_num_rows($result) > 0) {

@@ -1,6 +1,6 @@
 <?php
 
-$id=$_GET['id'];
+$id=$_GET['search'];
 $servername = "fdb17.runhosting.com";
 $username = "2346231_db";
 $password = "password1";
@@ -12,16 +12,17 @@ $conn = mysqli_connect($servername, $username, $password);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
 $db  = mysqli_select_db($conn,"2346231_db");
 
 
-$sql = "SELECT num, nodename, address, architecture, ip6address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time FROM JSON WHERE nodename='$id' ORDER BY num DESC LIMIT 1;";
+$sql = "SELECT num, nodename, address, architecture, ip6address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time FROM JSON WHERE macaddress='$id' ORDER BY num DESC LIMIT 1;";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         $last = mysqli_fetch_assoc($result);
 }
-$sql2 = "SELECT num, nodename, address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time FROM JSON WHERE nodename='$id' ORDER BY num LIMIT 1;";
+$sql2 = "SELECT num, nodename, address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time FROM JSON WHERE macaddress='$id' ORDER BY num LIMIT 1;";
 $result2 = mysqli_query($conn, $sql2);
 
 if (mysqli_num_rows($result2) > 0) {
@@ -89,32 +90,32 @@ if (mysqli_num_rows($result2) > 0) {
       
                             echo "<tr>"; 
                             echo "<td><b>Morning</b></td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Monday' AND hour<15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Monday' AND hour<15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
                             
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Tuesday' AND hour<15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Tuesday' AND hour<15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Wednesday' AND hour<15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Wednesday' AND hour<15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Thursday' AND hour<15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Thursday' AND hour<15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Friday' AND hour<15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Friday' AND hour<15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Saturday' AND hour<15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Saturday' AND hour<15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Sunday' AND hour<15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Sunday' AND hour<15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
@@ -124,32 +125,32 @@ if (mysqli_num_rows($result2) > 0) {
                             
                             echo "<tr>"; 
                             echo "<td><b>Evening</b></td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Monday' AND hour>=15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Monday' AND hour>=15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
                             
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Tuesday' AND hour>=15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Tuesday' AND hour>=15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Wednesday' AND hour>=15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Wednesday' AND hour>=15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Thursday' AND hour>=15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Thursday' AND hour>=15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Friday' AND hour>=15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Friday' AND hour>=15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Saturday' AND hour>=15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Saturday' AND hour>=15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
-                            $sql="SELECT count(*) as total from JSON WHERE nodename='$id' AND weekday='Sunday' AND hour>=15";
+                            $sql="SELECT count(*) as total from JSON WHERE macaddress='$id' AND weekday='Sunday' AND hour>=15";
                             $result=mysqli_query($conn, $sql);
                             $data=mysqli_fetch_assoc($result);
                             echo "<td>",$data['total'],"</td>";
@@ -193,7 +194,7 @@ if (mysqli_num_rows($result2) > 0) {
       <?php 
        
 
-$sql = "SELECT num, nodename, address, architecture, ip6address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time, subnet FROM JSON WHERE nodename='$id';";
+$sql = "SELECT num, nodename, address, architecture, ip6address, macaddress, bios_version, sda_model, sda_size, sr0_model, sr0_size, processor_cores, processor, distro, distro_release, distro_version, date, time, subnet FROM JSON WHERE macaddress='$id';";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
 
